@@ -8,8 +8,9 @@ They do not make real API requests during tests.
 - `PINGUPAG_API_KEY`: PinguPag secret key. Set its value only in Netlify's protected
   environment-variable settings.
 - `PIX_ALLOWED_AMOUNTS_CENTS`: comma-separated allowlist of integer amounts in
-  centavos. Configure the exact amounts accepted by the checkout; the function
-  rejects amounts outside this list.
+  centavos. The checkout client reads the currently displayed Pix total and
+  submits it in centavos. Configure every exact total the checkout can produce
+  (including quantity variants); the function rejects amounts outside this list.
 - `URL`: Netlify's site URL, supplied by Netlify and used to form the webhook URL.
 
 ## Endpoints
@@ -30,5 +31,12 @@ require `productHash`. Payment records are stored in the Netlify Blobs store
 `pix-transactions`; personal customer fields are not persisted there.
 
 The static website in this repository has no editable checkout source, so it is
-not wired to these endpoints yet. The functions also cannot update an external
-order system that is not present in the repository.
+compiled. `pix-checkout.js` is loaded by the existing checkout page and submits
+its displayed total and customer fields to the functions without changing the
+compiled application bundle. The functions store verified payment status in
+Netlify Blobs; no separate order-management or fulfillment backend exists in
+this repository.
+
+The Netlify redirects preserve the former short path
+`/lumina-pi-two-60.vercel.app/...` by forwarding it to the existing published
+path under `/oferta/`. The current published site path remains available.

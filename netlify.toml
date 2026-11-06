@@ -1,3 +1,13 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/lumina-pi-two-60.vercel.app"
+  to = "/oferta/lumina-pi-two-60.vercel.app/"
+  status = 301
+
+[[redirects]]
+  from = "/lumina-pi-two-60.vercel.app/*"
+  to = "/oferta/lumina-pi-two-60.vercel.app/:splat"
+  status = 301
