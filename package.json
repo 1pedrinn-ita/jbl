@@ -1,0 +1,11 @@
+{
+  "name": "jbl-static-site-pix-functions",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^11.1.7"
+  }
+}
